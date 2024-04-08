@@ -1,0 +1,44 @@
+# Ignore compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore pipenv files
+Pipfile
+Pipfile.lock
+
+# Ignore ide files
+.vscode
+.idea
+.DS_Store
+
+# Ignore env files
+.env
+.env.local
+.env.*.local
+
+# Ignore virtual environment files
+.venv/
+env/
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore system and temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# Ignore log files
+*.log
+
+# Ignore cache and temporary files
+__pycache__/
+*.bak
+*.cache
+*.temp
