@@ -18,13 +18,15 @@ class Messages(commands.Cog):
             guild = str(message.guild)
 
             # Check command prefix
+            # ctx = await self.bot.get_context(message)
+            # prefix = ctx.prefix
             prefix = await self.bot.get_prefix(message)
+            # print(f'prefix: {prefix}')
 
             if not user_message.startswith(prefix):
                 print(f'[{guild} - {channel}] {username}: "{user_message}"')
                 return
-
-            if user_message.startswith(prefix):
+            else:
                 # Split message content into command and arguments
                 command_content = user_message[len(prefix):].strip() # Remove prefix and leading/trailing whitespaces
                 parts = command_content.split(maxsplit=1) # Split into command name and arguments
