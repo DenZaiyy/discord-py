@@ -1,14 +1,13 @@
 from discord.ext import commands
-from discord.ext.commands import has_permissions, bot_has_permissions
 from typing import Union
 
-class Clear(commands.Cog):
-    def __init__(self, bot):
+class ClearCommand(commands.Cog):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @commands.command(description='Clear messages from the channel', usage='!clear <amount>', aliases=['purge', 'c'])
-    @has_permissions(manage_messages=True)
-    @bot_has_permissions(manage_messages=True)
+    @commands.has_permissions(manage_messages=True, administrator=True)
+    @commands.bot_has_permissions(manage_messages=True, administrator=True)
     async def clear(self, ctx: commands.Context, amount: Union[int, str]):
         if isinstance(amount, int):
             if amount > 100:
@@ -30,7 +29,11 @@ class Clear(commands.Cog):
     async def clear_error(self, ctx: commands.Context, error):
         print(f'Clear command error: {error}')
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.reply('Please pass in the amount of messages to delete', ephemeral=True)
+            await ctx.reply('Please pass in the amount of messages to delete')
+        if isinstance(error, commands.BotMissingPermissions):
+            await ctx.reply('I do not have the required permissions to delete messages')
+        if isinstance(error, commands.MissingPermissions):
+            await ctx.reply('You do not have the required permissions to delete messages')
 
 async def setup(bot):
-    await bot.add_cog(Clear(bot))
+    await bot.add_cog(ClearCommand(bot))
