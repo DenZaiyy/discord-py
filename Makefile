@@ -2,7 +2,7 @@
 run:
 	clear && .venv/bin/python main.py
 
-.PHONY: setup venv source discord python-dotenv
+.PHONY: setup
 setup:
 	make venv
 	make discord
@@ -13,13 +13,13 @@ venv:
 	python3 -m venv .venv && /bin/bash .venv/bin/activate
 
 discord:
-	pip install discord
+	.venv/bin/pip install discord
 
 python-dotenv:
-	pip install python-dotenv
+	.venv/bin/pip install python-dotenv
 
 mysql:
-	pip install mysql-connector-python
+	.venv/bin/pip install mysql-connector-python
 
 .PHONY: clean
 clean:
