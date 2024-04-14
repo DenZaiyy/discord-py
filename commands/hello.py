@@ -17,14 +17,15 @@ class HelloCommand(commands.Cog):
                 return
             
             locale = Locale.get_locale(self, ctx.guild.id)
+            print(f'locale: {locale}')
             
-            if locale == 'ENG':
+            if not None and locale == 'ENG':
                 await ctx.reply(f'Hello {ctx.author.mention} :wave: !')
-            elif locale == 'FRA':
+            elif not None and locale == 'FRA':
                 await ctx.reply(f'Bonjour {ctx.author.mention} :wave: !')
-            elif locale == 'GER':
+            elif not None and locale == 'GER':
                 await ctx.reply(f'Hallo {ctx.author.mention} :wave: !')
-            elif locale == 'SPA':
+            elif not None and locale == 'SPA':
                 await ctx.reply(f'Hola {ctx.author.mention} :wave: !')
             else:
                 await ctx.reply(f'Hello {ctx.author.mention} :wave: !')
