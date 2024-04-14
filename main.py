@@ -13,7 +13,6 @@ PREFIX: Final[str] = os.getenv('DEFAULT_PREFIX')
 # Setup the client
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=PREFIX, intents=intents)
-bot.activity = discord.Game(name=f'{PREFIX}help')
 
 # Setup logs
 handler = logging.FileHandler(filename='logs.log', encoding='utf-8', mode='w')
@@ -41,6 +40,7 @@ async def on_ready() -> None:
     try:
         await load_commands()
         await load_events()
+        await bot.change_presence(activity=discord.activity.Game(name=f'{PREFIX}help'), status=discord.Status.do_not_disturb)
 
         print(f'🤖 {bot.user.name} has connected! 🤖')
     except Exception as e:
