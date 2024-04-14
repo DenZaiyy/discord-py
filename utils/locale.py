@@ -47,8 +47,11 @@ class Locale:
         try:
             # Check if guild exists in the database
             guild_locale = self.db.query('SELECT locale FROM guilds WHERE guild_id = %s', (guild_id,), fetchone=True)
-
-            if guild_locale is None:
+            
+            # check if guild_locale found in the database
+            if guild_locale[0] is None:
+                # Set the default locale
+                print(f'locale: {self.locale}')
                 return self.locale
             else:
                 # Get the locale label from the locale_id
@@ -57,4 +60,3 @@ class Locale:
 
         except Exception as e:
             print(f"An error occurred while tried to get locale: {e}")
-            raise e
